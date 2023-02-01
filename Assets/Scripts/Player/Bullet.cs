@@ -22,14 +22,10 @@ public class Bullet : MonoBehaviour {
 			enemy.TakeDamage(damage);
 		}
 
-		Instantiate(impactEffect, transform.position, transform.rotation);
-
-		Destroy(gameObject);
+		//Instantiate(impactEffect, transform.position, transform.rotation);
+		if (!hitInfo.CompareTag("Player"))
+		{
+			Destroy(gameObject);
+		}
 	}
-
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		Destroy(gameObject);
-	}
-
 }

@@ -15,6 +15,11 @@ public class PrefabWeapon : MonoBehaviour {
 			animator.SetTrigger("Throw");
 			//Shoot();
 		}
+		if (Input.GetButtonDown("Fire2"))
+		{
+			animator.SetTrigger("IsAttacking");
+			//Shoot();
+		}
 	}
 
 	void Shoot ()
