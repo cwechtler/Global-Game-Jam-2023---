@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Through
   - Ground
+  - Fade Panel
   layers:
   - Default
   - TransparentFX

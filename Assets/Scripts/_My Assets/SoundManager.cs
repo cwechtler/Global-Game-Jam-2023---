@@ -17,6 +17,7 @@ public class SoundManager : MonoBehaviour {
 	[SerializeField] private AudioClip shotClip;
 	[SerializeField] private AudioClip buttonClick;
 
+	public int MusicArrayLength { get => music.Length; }
 
 	private float audioVolume = 1f;
 	private int clipIndex = 0;
@@ -126,25 +127,42 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
+	public void PlayMusicForScene(int index)
+	{
+		if (music.Length > 0)
+		{
+			MusicAudioSource.clip = music[index];
+			//if (LevelManager.instance.currentScene == "MikeTest")
+			//{
+			//	MusicAudioSource.volume = 0;
+			//	audioVolume = 0f;
+			//}
+		}
+	}
+
 	public void StartAudio(){
 		MusicAudioSource.Play();
 	}
 
 	public void SetButtonClip(){
-		SFXAudioSource.PlayOneShot(buttonClick, 2f);
+		if(buttonClick != null)
+			SFXAudioSource.PlayOneShot(buttonClick, 2f);
 	}
 
 	public void PlayWalkClip() {
-		SFXAudioSource.PlayOneShot(movementClips[1], .2f);
+		if (movementClips[1] != null)
+			SFXAudioSource.PlayOneShot(movementClips[1], .2f);
 	}
 
 	public void PlayRunClip()
 	{
-		SFXAudioSource.PlayOneShot(movementClips[2], .2f);
+		if (movementClips[2] != null)
+			SFXAudioSource.PlayOneShot(movementClips[2], .2f);
 	}
 
 	public void PlayShotClip() {
-		SFXAudioSource.PlayOneShot(shotClip, .3f);
+		if (shotClip != null)
+			SFXAudioSource.PlayOneShot(shotClip, .3f);
 	}
 
 	public void ChangeMasterVolume(float volume) {

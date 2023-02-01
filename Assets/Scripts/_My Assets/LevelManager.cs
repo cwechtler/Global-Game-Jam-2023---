@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,8 +7,21 @@ public class LevelManager : MonoBehaviour {
 
 	public static LevelManager instance = null;
 
+	public const string MainMenuString = "Main Menu";
+	public const string OptionsString = "Options";
+	public const string Level1String = "Level 1";
+	public const string LoseLevelString = "Lose Level";
+
 	#if UNITY_WEBGL
-		[SerializeField] private string webglQuitURL = "about:blank";
+	[Tooltip("For browser session storage. Uncheck to set URL manually")]
+	[SerializeField] private bool setSessionStorageGameQuitURL = false;
+	
+	[ConditionalHide("setSessionStorageGameQuitURL", true, false)]
+	[Tooltip("This is the string value of the url sessionstorage Item you want to get")]
+	[SerializeField] private string sessionStorageItem;
+	[Space]
+	[ConditionalHide("setSessionStorageGameQuitURL", true, true)]
+	[SerializeField] private string webglQuitURL = "about:blank";
 	#endif
 
 	public string currentScene { get; private set; }
@@ -22,7 +36,7 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	void Start(){
+	private void Start(){
 		currentScene = SceneManager.GetActiveScene().name;
 	}
 
@@ -31,42 +45,29 @@ public class LevelManager : MonoBehaviour {
 			currentScene = SceneManager.GetActiveScene().name;
 		}
 
-		if (Input.GetButtonDown("Enter")) {
-			if (currentScene != "Main Menu") {
-				LoadLevel("Main Menu");
-			}
-			else {
-				LoadLevel("Test Level");
-			}
-		}
+		//if (Input.GetButtonDown("Enter")) {
+		//	if (currentScene != MainMenuString) {
+		//		LoadLevel(MainMenuString);
+		//	}
+		//	else {
+		//		LoadLevel(Level1String);
+		//	}
+		//}
 
 		if (Input.GetButtonDown("Cancel")) {
 			QuitRequest();
 		}
 	}
 
-	public void StartNewGame()
+	private IEnumerator LoadScene(string name, float waitTime)
 	{
-		GameController.instance.StartGame();
-		StartCoroutine(LoadScene(3, .9f));
-	}
-
-	public void LoadLevel (string name){
-		Debug.Log("Level load requested for: " + name);
-		SceneManager.LoadScene(name);
-	}
-
-	public void LoadLevel(int levelIndex, float waitTime) {
-		StartCoroutine(LoadScene(levelIndex, waitTime));
-	}
-
-	public void LoadLevelAdditive(string name) {
-		SceneManager.LoadScene(name, LoadSceneMode.Additive);
-	}
-	
-	public void LoadNextLevel() {
-		StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1, .9f));
-		currentScene = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1).name;
+		GameController.instance.FadePanel();
+		Debug.Log("start Coroutine");
+		yield return new WaitForSeconds(waitTime);
+		AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(name);
+		yield return new WaitUntil(() => asyncOperation.isDone);
+		print("Scene " + currentScene + " Loaded");
+		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
 	}
 
 	private IEnumerator LoadScene(int sceneToLoad, float waitTime)
@@ -76,12 +77,9 @@ public class LevelManager : MonoBehaviour {
 		AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 		yield return new WaitUntil(() => asyncOperation.isDone);
 		print("Scene " + currentScene + " Loaded");
-		//if (currentScene == "Level 1") {
-		//	GameController.instance.LoadSceneObjects();
-		//}	
 	}
 
-	public IEnumerator UnloadScene(float waitTime, string name)
+	private IEnumerator UnloadScene(float waitTime, string name)
 	{
 		float counter = 0f;
 
@@ -95,6 +93,67 @@ public class LevelManager : MonoBehaviour {
 		yield return null;
 	}
 
+	private int ReferanceIndex(string scene)
+	{
+		int randomIndex = Random.Range(2, SoundManager.instance.MusicArrayLength);
+		int clipIndex;
+		switch (scene) {
+			case MainMenuString:
+				clipIndex = 0;
+				break;
+			case OptionsString:
+				clipIndex = 0;
+				break;
+			case LoseLevelString:
+				clipIndex = 1;
+				break;
+			case Level1String:	
+				clipIndex = randomIndex;
+				break;
+			case "Level 2":
+				clipIndex = randomIndex;
+				break;
+			default:
+				clipIndex = 0;
+				break;
+		}
+		return clipIndex;
+	}
+
+	public void LoadLevel(string name, bool restart = false)
+	{
+		Debug.Log("Level load requested for: " + name);
+		if (restart) {
+			GameController.instance.resetGame();
+		}
+		StartCoroutine(LoadLevel(name, .9f));
+	}
+
+	public IEnumerator LoadLevel(string name, float waitTime)
+	{
+		GameController.instance.FadePanel();
+		yield return new WaitForSeconds(waitTime);
+		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
+		SceneManager.LoadScene(name);
+	}
+
+	public void LoadLevel(int levelIndex, float waitTime)
+	{
+		StartCoroutine(LoadScene(levelIndex, waitTime));
+	}
+
+	public void LoadLevelAdditive(string name)
+	{
+		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
+		SceneManager.LoadScene(name, LoadSceneMode.Additive);
+	}
+
+	public void LoadNextLevel()
+	{
+		StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1, .9f));
+		currentScene = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1).name;
+	}
+
 	public void QuitRequest()
 	{
 		Debug.Log("Level Quit Request");
@@ -102,7 +161,14 @@ public class LevelManager : MonoBehaviour {
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
 		#elif UNITY_WEBGL
-			Application.OpenURL(webglQuitURL);
+			Application.Quit();
+			if (setSessionStorageGameQuitURL) {
+				WebGLPluginJS.SessionRedirect(sessionStorageItem);
+			}
+			else {
+				WebGLPluginJS.Redirect(webglQuitURL);
+			}
+		
 		#else
 			Application.Quit();
 		#endif

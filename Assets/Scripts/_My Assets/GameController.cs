@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,16 +11,18 @@ public class GameController : MonoBehaviour
 	public GameObject playerGO { get; private set; }
 	public bool isPaused { get; private set; }
 	public float timeDeltaTime { get; private set; }
-	public bool OptionsOverlayOpen { get; set; } = false;
 	public int EnemiesKilled { get; set; }
 	public int ActiveSkillIndex { get; set; }
+	public int Shadow { get => shadow; }
+	public int Air { get => air; }
+	public int Fire { get => fire; }
+	public int Water { get => water; }
+	public string PlayerName { get; set; }
+	public List<Tuple<string, int>> HighScores { get => highScores; set => highScores = value; }
 
-
-	private int enemiesKilled;
+	private List<Tuple<string, int>> highScores = new List<Tuple<string, int>>();
 	private GameObject fadePanel;
-	private Vector3 spawnPointLocation;
 	private Animator animator;
-	private bool continueGame = false;
 	private int shadow, air, fire, water;
 
 	private void Awake()
@@ -30,43 +34,53 @@ public class GameController : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
-		//StartCoroutine(LateStart(.1f));
+		//PlayerPrefsManager.DeleteAllPlayerPrefs();
+
+		//if (PlayerPrefsManager.DoesKeyExist(PlayerPrefsManager.HighScoresKey)) {
+		//	string highScoresString = PlayerPrefsManager.GetHighScores();
+		//	highScores = JsonConvert.DeserializeObject<List<Tuple<string, int>>>(highScoresString);
+
+		//	highScores.Sort((x, y) => y.Item2.CompareTo(x.Item2));
+		//}
+
+		//if (PlayerPrefsManager.DoesKeyExist(PlayerPrefsManager.PlayerNameKey)) {
+		//	PlayerName = PlayerPrefsManager.GetPlayerName();
+		//}
+		//else {
+		//	PlayerName = System.Environment.MachineName;
+		//}
 	}
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("Submit")) {
-			if (!GameController.instance.isPaused) {
-				GameController.instance.PauseGame();
+		if (Input.GetButtonDown("Pause")) {
+			if (!isPaused) {
+				PauseGame();
 			}
 			else {
-				GameController.instance.ResumeGame();
+				ResumeGame();
 			}
 		}
 	}
 
-	IEnumerator LateStart(float waitTime)
-	{
-		yield return new WaitForSeconds(waitTime);
-		//AstarPath.active.Scan();
-	}
+	//public bool SaveHighScore(string name)
+	//{
+	//	highScores.Add(Tuple.Create(name, EnemiesKilled));
+	//	highScores.Sort((x, y) => y.Item2.CompareTo(x.Item2));
 
+	//	string json = JsonConvert.SerializeObject(highScores, Formatting.Indented);
+	//	//PlayerPrefsManager.SetHighScores(json);
 
-	private void FindSceneObjects() {
-		playerGO = GameObject.FindGameObjectWithTag("Player");
-		fadePanel = GameObject.FindGameObjectWithTag("Fade Panel");
-		if (fadePanel != null) {
-			animator = fadePanel.GetComponent<Animator>();
-		}
-	}
+	//	return true;
+	//}
 
 	//public void AddEnemyType(skillElementType skillElementType) {
 	//	switch (skillElementType) {
 	//		case skillElementType.Fire:
-	//			fire++;
+	//			water++;
 	//			break;
 	//		case skillElementType.Water:
-	//			water++;
+	//			fire++;
 	//			break;
 	//		case skillElementType.Lightning:
 	//			shadow++;
@@ -78,35 +92,31 @@ public class GameController : MonoBehaviour
 	//			break;
 	//	}
 	//}
-
-	public void StartGame()
-	{
-		StartCoroutine(LateStart(.1f));
+	public void resetGame() {
+		EnemiesKilled = 0;
+		shadow = 0;
+		air = 0;
+		fire = 0;
+		water = 0;
 	}
 
-	public void PauseGame()
+	public void FadePanel()
+	{	
+		fadePanel = GameObject.FindGameObjectWithTag("Fade Panel");
+		fadePanel.GetComponent<Animator>().SetBool("FadeIn", true);
+	}
+
+	private void PauseGame()
 	{
 		timeDeltaTime = Time.deltaTime;
 		isPaused = true;
 		Time.timeScale = 0;
 	}
 
-	public void ResumeGame()
+	private void ResumeGame()
 	{
 		Time.timeScale = 1;
 		isPaused = false;
-	}
-
-	public void CloseOverlayOptions() {
-		isPaused = false;
-	}
-
-	public void LoadSceneObjects() {
-		FindSceneObjects();
-		if (continueGame) {
-			playerGO.transform.position = spawnPointLocation;
-			continueGame = false;
-		}
 	}
 
 	private IEnumerator RespawnPlayer(int waitToSpawn)
@@ -118,7 +128,6 @@ public class GameController : MonoBehaviour
 		playerGO.GetComponent<Rigidbody2D>().isKinematic = false;
 		yield return new WaitForSeconds(1);
 	}
-
 
 	public IEnumerator FadeCanvasGroup_TimeScale_0(CanvasGroup canvasGroup, bool isPanelOpen, float fadeTime)
 	{
