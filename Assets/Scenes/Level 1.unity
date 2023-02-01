@@ -4805,6 +4805,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 726245113831504494, guid: 41d72aa3ace55fd45a0f2c534a9be8cd,
         type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d7d5c57899f2bea4b876f47083360b3d,
+        type: 3}
+    - target: {fileID: 726245113831504494, guid: 41d72aa3ace55fd45a0f2c534a9be8cd,
+        type: 3}
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
@@ -5246,7 +5252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8128140162128505671
 MonoBehaviour:
   m_ObjectHideFlags: 0
