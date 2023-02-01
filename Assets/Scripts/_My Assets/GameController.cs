@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
 	private Animator animator;
 	private int shadow, air, fire, water;
 
+	public int Score { get; set; }
+
 	private void Awake()
 	{
 		if (instance != null) {
@@ -113,10 +115,10 @@ public class GameController : MonoBehaviour
 		Time.timeScale = 0;
 	}
 
-	private void ResumeGame()
+	public void ResumeGame(bool isPause = false )
 	{
 		Time.timeScale = 1;
-		isPaused = false;
+		isPaused = isPause;
 	}
 
 	private IEnumerator RespawnPlayer(int waitToSpawn)

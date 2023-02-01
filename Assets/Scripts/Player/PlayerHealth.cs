@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-
+	[SerializeField] private CanvasController canvasController;
 	public int health = 100;
 
 	public GameObject deathEffect;
@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
-
+		canvasController.UpdateHealthBar(health);
 		StartCoroutine(DamageAnimation());
 
 		if (health <= 0)

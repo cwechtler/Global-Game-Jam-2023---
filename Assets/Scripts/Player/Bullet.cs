@@ -16,10 +16,11 @@ public class Bullet : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D hitInfo)
 	{
-		BossHealth enemy = hitInfo.GetComponent<BossHealth>();
+		EnemyHealth enemy = hitInfo.GetComponent<EnemyHealth>();
 		if (enemy != null)
 		{
 			enemy.TakeDamage(damage);
+			GameController.instance.Score += 1;
 		}
 
 		//Instantiate(impactEffect, transform.position, transform.rotation);

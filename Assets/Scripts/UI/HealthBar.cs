@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-	public BossHealth bossHealth;
+	public EnemyHealth bossHealth;
 	public Slider slider;
 
 	void Start()
 	{
-		slider.maxValue = bossHealth.health;
+		slider.maxValue = bossHealth.Health;
 	}
 
 	// Update is called once per frame
 	void Update()
     {
-		slider.value = bossHealth.health;
+		slider.value = bossHealth.Health;
     }
 }

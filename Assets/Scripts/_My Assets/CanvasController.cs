@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+//using UnityEngine.UIElements;
 
 public class CanvasController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CanvasController : MonoBehaviour
 	[SerializeField] private Color32 activeTextColor = new Color32(255, 0, 0, 255);
 	[SerializeField] private Slider playerHealthBar;
 	[SerializeField] private TextMeshProUGUI ScoreText;
+
 	[SerializeField] private TextMeshProUGUI[] skillTexts;
 	[SerializeField] private Slider[] skillCoolDowns;
 	[SerializeField] private Image[] skillCooldownFill;
@@ -28,7 +30,7 @@ public class CanvasController : MonoBehaviour
 
 	private void Update()
 	{
-		ScoreText.text = GameController.instance.EnemiesKilled.ToString();
+		ScoreText.text = GameController.instance.Score.ToString();
 		if (GameController.instance.isPaused) {
 			pausePanel.SetActive(true);
 		}
@@ -66,14 +68,15 @@ public class CanvasController : MonoBehaviour
 		}
 	}
 
-	public void ReduceHealthBar(int amount) {
-		playerHealthBar.value = amount;
+	public void UpdateHealthBar(int amount) {
+		//playerHealthBar.value = amount;
+		playerHealthBar.maxValue = amount;
 	}
 
 	public void MainMenu()
 	{
 		//animator.SetBool("FadeOut", true);
-		LevelManager.instance.LoadLevel(0, .9f);
+		LevelManager.instance.LoadLevel(0, 0);
 	}
 
 	//public void StartNewGame() {

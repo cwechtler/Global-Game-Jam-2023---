@@ -73,10 +73,18 @@ public class LevelManager : MonoBehaviour {
 	private IEnumerator LoadScene(int sceneToLoad, float waitTime)
 	{
 		print("Load " + sceneToLoad);
+		if (GameController.instance.isPaused)
+		{
+			Time.timeScale = 1;
+		}
 		yield return new WaitForSeconds(waitTime);
 		AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 		yield return new WaitUntil(() => asyncOperation.isDone);
 		print("Scene " + currentScene + " Loaded");
+		if (GameController.instance.isPaused)
+		{
+			GameController.instance.ResumeGame();
+		}
 	}
 
 	private IEnumerator UnloadScene(float waitTime, string name)
@@ -126,6 +134,7 @@ public class LevelManager : MonoBehaviour {
 		if (restart) {
 			GameController.instance.resetGame();
 		}
+
 		StartCoroutine(LoadLevel(name, .9f));
 	}
 
