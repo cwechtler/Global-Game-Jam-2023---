@@ -2577,7 +2577,6 @@ GameObject:
   m_Component:
   - component: {fileID: 650554489}
   - component: {fileID: 650554491}
-  - component: {fileID: 650554490}
   m_Layer: 5
   m_Name: PlayerHealthBar
   m_TagString: Untagged
@@ -2608,20 +2607,6 @@ RectTransform:
   m_AnchoredPosition: {x: -254.7, y: 138}
   m_SizeDelta: {x: 195.99, y: 51.64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &650554490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650554488}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36a5457cb1fe80e44b7a37a19d55675a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 982058084}
-  slider: {fileID: 650554491}
 --- !u!114 &650554491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,6 +3611,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4278190335
   playerHealthBar: {fileID: 650554491}
+  playerHealth: {fileID: 982058084}
   ScoreText: {fileID: 82718575}
   skillTexts: []
   skillCoolDowns: []
@@ -5283,7 +5269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &8128140162128505671
 MonoBehaviour:
   m_ObjectHideFlags: 0
