@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
-		canvasController.UpdateHealthBar(health);
+		canvasController.UpdateHealthBar();
 		StartCoroutine(DamageAnimation());
 
 		if (health <= 0)

@@ -2615,7 +2615,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 650554488}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36a5457cb1fe80e44b7a37a19d55675a, type: 3}
   m_Name: 
@@ -4595,6 +4595,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 5866695966500488484, guid: c92259e4c1d11c3439f4cea31cc42cd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8446857594607490715, guid: c92259e4c1d11c3439f4cea31cc42cd9,
         type: 3}
       propertyPath: m_RootOrder
@@ -4663,6 +4668,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Level Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472434438546218434, guid: a1bf6176cd81d674790cb21fb3ac011f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8956648074186945114, guid: a1bf6176cd81d674790cb21fb3ac011f,
         type: 3}
@@ -4884,6 +4894,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3094603840214680274, guid: 41d72aa3ace55fd45a0f2c534a9be8cd,
+        type: 3}
+      propertyPath: canvasController
+      value: 
+      objectReference: {fileID: 1146011929}
     - target: {fileID: 3094603840214680277, guid: 41d72aa3ace55fd45a0f2c534a9be8cd,
         type: 3}
       propertyPath: m_RootOrder
@@ -4944,6 +4959,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3094603840214680300, guid: 41d72aa3ace55fd45a0f2c534a9be8cd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3094603840214680301, guid: 41d72aa3ace55fd45a0f2c534a9be8cd,
         type: 3}
       propertyPath: animator
@@ -4978,6 +4998,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5751612938451679963, guid: 6546a1978af8e5a468d48faa6d902982,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5751612938451679968, guid: 6546a1978af8e5a468d48faa6d902982,
         type: 3}
@@ -5034,7 +5059,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5751612938451679964, guid: 6546a1978af8e5a468d48faa6d902982, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6546a1978af8e5a468d48faa6d902982, type: 3}
 --- !u!1001 &7983534522333135466
 PrefabInstance:
@@ -5047,6 +5073,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906364391762142114, guid: a967a6fd995226143a33406a4fc8df4f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6146596628649980888, guid: a967a6fd995226143a33406a4fc8df4f,
         type: 3}
@@ -5252,7 +5283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8128140162128505671
 MonoBehaviour:
   m_ObjectHideFlags: 0
