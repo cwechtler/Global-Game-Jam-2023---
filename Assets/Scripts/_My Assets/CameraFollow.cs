@@ -11,7 +11,7 @@ namespace RPG.CameraUI {
 
         void LateUpdate() {
             if (player != null) {
-                this.transform.position = new Vector3(player.transform.position.x, 0, -10);
+                this.transform.position = new Vector3(player.transform.position.x, 3, -10);
             }
         }
     }

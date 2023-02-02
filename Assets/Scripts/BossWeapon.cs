@@ -9,10 +9,13 @@ public class BossWeapon : MonoBehaviour
 
 	public Vector3 attackOffset;
 	public float attackRange = 1f;
+	public float attackDistance = 5f;
+	public float rootAttackRange = 10f;
 	public LayerMask attackMask;
 
 	public void Attack()
 	{
+		print("Attack");
 		Vector3 pos = transform.position;
 		pos += transform.right * attackOffset.x;
 		pos += transform.up * attackOffset.y;
@@ -20,8 +23,10 @@ public class BossWeapon : MonoBehaviour
 		Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
 		if (colInfo != null)
 		{
+			print("hit");
 			colInfo.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
 		}
+		
 	}
 
 	public void EnragedAttack()

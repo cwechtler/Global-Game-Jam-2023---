@@ -99,25 +99,19 @@ public class SoundManager : MonoBehaviour {
 			case "Main Menu":
 				MusicAudioSource.clip = music[0];
 				break;
-
 			case "Options":
 				MusicAudioSource.clip = music[0];
 				break;
-			case "Test Level":
-			case "MikeTest":
 			case "Level 1":
 				MusicAudioSource.clip = music[1];
 				break;
-
 			case "Level 2":
 				MusicAudioSource.clip = music[2];
 				break;
-
 			default:
 				break;
 		}
 	}
-
 
 	void PlayRandomAmbient()
 	{
