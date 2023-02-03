@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Boss_Run : StateMachineBehaviour
@@ -7,6 +8,7 @@ public class Boss_Run : StateMachineBehaviour
 
 	public float speed = 2.5f;
 	public float attackRange = 3f;
+	public float timeRemaining = 0;
 
 	Transform player;
 	Rigidbody2D rb;
@@ -20,26 +22,35 @@ public class Boss_Run : StateMachineBehaviour
 		rb = animator.GetComponent<Rigidbody2D>();
 		boss = animator.GetComponent<Boss>();
 		bossWeapon = animator.GetComponent<BossWeapon>();
+		SoundManager.instance.PlayBossWalkClip();
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
+		if (timeRemaining > 0)
+		{
+			timeRemaining -= Time.deltaTime;
+			
+		}
+
 		boss.LookAtPlayer();
 
 		Vector2 target = new Vector2(player.position.x, rb.position.y);
 		Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
 		rb.MovePosition(newPos);
+		float playerDistance = Vector2.Distance(player.position, rb.position);
 
-		if (Vector2.Distance(player.position, rb.position) <= attackRange)
+		if (playerDistance <= attackRange)
 		{
 			animator.SetBool("IsWalking", false);
 			animator.SetBool("IsAttacking", true);
 			animator.SetTrigger("Swing");
 		}
 
-		if (Vector2.Distance(player.position, rb.position) >= bossWeapon.rootAttackRange)
+		if (playerDistance >= bossWeapon.minRootAttackRange && playerDistance <= bossWeapon.maxRootAttackRange && timeRemaining <= 0)
 		{
+			timeRemaining = Random.Range(0, 10);
 			animator.SetBool("IsWalking", false);
 			animator.SetBool("IsAttacking", true);
 			animator.SetTrigger("RootAttack");

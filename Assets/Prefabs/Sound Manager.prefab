@@ -51,11 +51,17 @@ MonoBehaviour:
   MusicAudioSource: {fileID: 8442780484546170670}
   SFXAudioSource: {fileID: 4214786581363416699}
   ambientAudioSource: {fileID: 4176700640678635509}
-  music: []
+  music:
+  - {fileID: 8300000, guid: 8927087f0e33c6644bb55f229879828c, type: 3}
   ambientClips: []
   movementClips: []
-  shotClip: {fileID: 0}
   buttonClick: {fileID: 0}
+  shootClip: {fileID: 8300000, guid: 19ff6c8df1784504498aec9c3141324f, type: 3}
+  jumpClip: {fileID: 8300000, guid: dc31587f8707ee344b1a5295d8f82ba7, type: 3}
+  swingAxeClip: {fileID: 8300000, guid: dc31587f8707ee344b1a5295d8f82ba7, type: 3}
+  swipeClip: {fileID: 8300000, guid: b47b6f80918b7f94f987663d59954fb6, type: 3}
+  walkClip: {fileID: 0}
+  rootAttackClip: {fileID: 0}
 --- !u!82 &8442780484546170670
 AudioSource:
   m_ObjectHideFlags: 0
@@ -69,9 +75,9 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.598
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
