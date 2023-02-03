@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour {
 		if (enemy != null)
 		{
 			enemy.TakeDamage(damage);
+			SoundManager.instance.PlayAxeImpactClip();
 			GameController.instance.Score += 1;
 		}
 
