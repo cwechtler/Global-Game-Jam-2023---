@@ -19,13 +19,22 @@ public class Boss_Idle : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-		if (Vector2.Distance(player.position, rb.position) > bossWeapon.attackDistance)
+		Debug.Log(GameController.instance.isInBossZone);
+		if (GameController.instance.isInBossZone)
 		{
-			animator.SetBool("IsWalking", true);
+			if (Vector2.Distance(player.position, rb.position) > bossWeapon.attackDistance)
+			{
+				animator.SetBool("IsWalking", true);
+			}
+			else if (Vector2.Distance(player.position, rb.position) <= bossWeapon.attackDistance)
+			{
+				animator.SetBool("IsAttacking", true);
+				animator.SetTrigger("Swing");
+			}
 		}
-		else if(Vector2.Distance(player.position, rb.position) <= bossWeapon.attackDistance){
-			animator.SetBool("IsAttacking", true);
-			animator.SetTrigger("Swing");
+		else
+		{
+			animator.SetBool("IsWalking", false);
 		}
 	}
 
