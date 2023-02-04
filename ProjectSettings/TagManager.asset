@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Fade Panel
   - Enemy
+  - Boss Zone
   layers:
   - Default
   - TransparentFX
