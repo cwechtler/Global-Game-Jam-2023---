@@ -46,9 +46,21 @@ TagManager:
   - name: Background
     uniqueID: 1611635347
     locked: 0
-  - name: Player
-    uniqueID: 2578072995
+  - name: Near Background
+    uniqueID: 1815576961
+    locked: 0
+  - name: Exterior
+    uniqueID: 3144819675
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2578072995
+    locked: 0
+  - name: Foreground
+    uniqueID: 1548258431
+    locked: 0
+  - name: Near Foreground
+    uniqueID: 2060702239
     locked: 0
