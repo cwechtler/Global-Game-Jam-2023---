@@ -58,11 +58,12 @@ MonoBehaviour:
   ambientClips:
   - {fileID: 8300000, guid: 19ac63e3712afbd4abf19870da403271, type: 3}
   movementClips: []
-  buttonClick: {fileID: 0}
+  buttonClick: {fileID: 8300000, guid: 92247da7e272eb84ea83ec134f3c0c2b, type: 3}
   shootClip: {fileID: 8300000, guid: 19ff6c8df1784504498aec9c3141324f, type: 3}
   jumpClip: {fileID: 8300000, guid: 58a01bacc3130e5479efe285852ec443, type: 3}
   swingAxeClip: {fileID: 8300000, guid: dc31587f8707ee344b1a5295d8f82ba7, type: 3}
   axeImpactClip: {fileID: 8300000, guid: 6917bc70abe6f344a86ac4a1205e6023, type: 3}
+  playerDeathClip: {fileID: 8300000, guid: af60f1319de85b640aee726a70c36b61, type: 3}
   swipeClip: {fileID: 8300000, guid: b47b6f80918b7f94f987663d59954fb6, type: 3}
   walkClip: {fileID: 8300000, guid: a09db4464e8eeca489c62fb917f2dccb, type: 3}
   rootAttackClip: {fileID: 8300000, guid: bd58228b8c4506a41bc6f500dc4913cf, type: 3}

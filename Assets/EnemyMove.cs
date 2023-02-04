@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -27,6 +28,10 @@ public class EnemyMove : MonoBehaviour
 		Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
 		rb.MovePosition(newPos);
 		float playerDistance = Vector2.Distance(player.position, rb.position);
+
+		//Vector2 direction = (player.transform.position - transform.position).normalized;
+		//rb.velocity = new Vector2(direction.x, direction.y) * speed;
+		//rb.AddForce(direction * speed);
 	}
 
 	public void LookAtPlayer()
@@ -46,5 +51,10 @@ public class EnemyMove : MonoBehaviour
 			transform.Rotate(0f, 180f, 0f);
 			isFlipped = true;
 		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		
 	}
 }

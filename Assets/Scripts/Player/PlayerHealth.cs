@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
 	public int health = 100;
 
 	public GameObject deathEffect;
+	public bool isDead = false;
 
 	public void TakeDamage(int damage)
 	{
@@ -16,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
 		canvasController.UpdateHealthBar();
 		StartCoroutine(DamageAnimation());
 
-		if (health <= 0)
+		if (health <= 0 && !isDead)
 		{
 			Die();
 		}
@@ -24,7 +25,9 @@ public class PlayerHealth : MonoBehaviour
 
 	void Die()
 	{
-		LevelManager.instance.LoadLevel("Credits", 1f);
+		isDead = true;	
+		SoundManager.instance.PlayPlayerDeathClip();
+		StartCoroutine(LevelManager.instance.LoadLevel("Credits", 2.5f));
 	}
 
 	IEnumerator DamageAnimation()

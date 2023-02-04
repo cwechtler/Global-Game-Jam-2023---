@@ -28,6 +28,13 @@ public class Boss_Run : StateMachineBehaviour
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
+
+		if (player.GetComponent<PlayerHealth>().isDead) {
+			animator.SetBool("IsWalking", false);
+			animator.SetBool("IsAttacking", false);
+			return;
+		}
+
 		if (timeRemaining > 0)
 		{
 			timeRemaining -= Time.deltaTime;

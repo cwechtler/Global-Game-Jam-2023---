@@ -22,6 +22,7 @@ public class SoundManager : MonoBehaviour {
 	[SerializeField] private AudioClip jumpClip;
 	[SerializeField] private AudioClip swingAxeClip;
 	[SerializeField] private AudioClip axeImpactClip;
+	[SerializeField] private AudioClip playerDeathClip;
 
 	[Space]
 	[Header("Boss Sounds")]
@@ -184,6 +185,11 @@ public class SoundManager : MonoBehaviour {
 	{
 		if (swingAxeClip != null)
 			SFXAudioSource.PlayOneShot(swingAxeClip, 2f);
+	}
+
+	public void PlayPlayerDeathClip() {
+		if (playerDeathClip != null)
+			SFXAudioSource.PlayOneShot(playerDeathClip, .5f);
 	}
 
 	public void PlayAxeImpactClip()
