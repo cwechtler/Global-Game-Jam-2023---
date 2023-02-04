@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			jump = true;
 			animator.SetBool("IsJumping", true);
+			SoundManager.instance.PlayJumpClip();
 		}
 
 		if (Input.GetButtonDown("Crouch"))
@@ -33,12 +34,12 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			crouch = false;
 		}
-
 	}
 
 	public void OnLanding ()
 	{
 		animator.SetBool("IsJumping", false);
+		
 	}
 
 	public void OnCrouching (bool isCrouching)

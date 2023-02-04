@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour {
 	public static SoundManager instance = null;
-	[Range(.01f, .5f)] [SerializeField] private float fadeInTime = .05f;
+	[Range(.01f, .5f)][SerializeField] private float fadeInTime = .05f;
 
 	[SerializeField] private AudioMixer audioMixer;
 	[SerializeField] private AudioSource MusicAudioSource;
@@ -14,8 +14,20 @@ public class SoundManager : MonoBehaviour {
 	[SerializeField] private AudioClip[] ambientClips;
 	[SerializeField] private AudioClip[] movementClips;
 	[Space]
-	[SerializeField] private AudioClip shotClip;
 	[SerializeField] private AudioClip buttonClick;
+
+	[Space]
+	[Header("Player Sounds")]
+	[SerializeField] private AudioClip shootClip;
+	[SerializeField] private AudioClip jumpClip;
+	[SerializeField] private AudioClip swingAxeClip;
+	[SerializeField] private AudioClip axeImpactClip;
+
+	[Space]
+	[Header("Boss Sounds")]
+	[SerializeField] private AudioClip swipeClip;
+	[SerializeField] private AudioClip walkClip;
+	[SerializeField] private AudioClip rootAttackClip;
 
 	public int MusicArrayLength { get => music.Length; }
 
@@ -99,25 +111,19 @@ public class SoundManager : MonoBehaviour {
 			case "Main Menu":
 				MusicAudioSource.clip = music[0];
 				break;
-
 			case "Options":
 				MusicAudioSource.clip = music[0];
 				break;
-			case "Test Level":
-			case "MikeTest":
 			case "Level 1":
 				MusicAudioSource.clip = music[1];
 				break;
-
 			case "Level 2":
-				MusicAudioSource.clip = music[2];
+				MusicAudioSource.clip = music[0];
 				break;
-
 			default:
 				break;
 		}
 	}
-
 
 	void PlayRandomAmbient()
 	{
@@ -149,6 +155,24 @@ public class SoundManager : MonoBehaviour {
 			SFXAudioSource.PlayOneShot(buttonClick, 2f);
 	}
 
+	public void PlayJumpClip()
+	{
+		if (jumpClip != null)
+			SFXAudioSource.PlayOneShot(jumpClip, 2f);
+	}
+
+	public void PlaySwingAxeClip()
+	{
+		if (swingAxeClip != null)
+			SFXAudioSource.PlayOneShot(swingAxeClip, 2f);
+	}
+
+	public void PlayAxeImpactClip()
+	{
+		if (axeImpactClip != null)
+			SFXAudioSource.PlayOneShot(axeImpactClip, .5f);
+	}
+
 	public void PlayWalkClip() {
 		if (movementClips[1] != null)
 			SFXAudioSource.PlayOneShot(movementClips[1], .2f);
@@ -160,9 +184,25 @@ public class SoundManager : MonoBehaviour {
 			SFXAudioSource.PlayOneShot(movementClips[2], .2f);
 	}
 
-	public void PlayShotClip() {
-		if (shotClip != null)
-			SFXAudioSource.PlayOneShot(shotClip, .3f);
+	public void PlayShootClip() {
+		if (shootClip != null)
+			SFXAudioSource.PlayOneShot(shootClip, .3f);
+	}
+
+	public void PlaySwipeClip()
+	{
+		if (swipeClip != null)
+			SFXAudioSource.PlayOneShot(swipeClip, .3f);
+	}
+	public void PlayBossWalkClip()
+	{
+		if (walkClip != null)
+			SFXAudioSource.PlayOneShot(walkClip, .3f);
+	}
+	public void PlayRootAttackClip()
+	{
+		if (rootAttackClip != null)
+			SFXAudioSource.PlayOneShot(rootAttackClip, .3f);
 	}
 
 	public void ChangeMasterVolume(float volume) {

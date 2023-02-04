@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class BossWeapon : MonoBehaviour
@@ -9,7 +10,14 @@ public class BossWeapon : MonoBehaviour
 
 	public Vector3 attackOffset;
 	public float attackRange = 1f;
+	public float attackDistance = 5f;
+	public float minRootAttackRange = 10f;
+	public float maxRootAttackRange = 20f;
+	public GameObject rootAttackPrefab;
 	public LayerMask attackMask;
+
+	private GameObject attackRoots;
+	private Animator attackRootsAnimator;
 
 	public void Attack()
 	{
@@ -22,6 +30,7 @@ public class BossWeapon : MonoBehaviour
 		{
 			colInfo.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
 		}
+		
 	}
 
 	public void EnragedAttack()
@@ -34,6 +43,31 @@ public class BossWeapon : MonoBehaviour
 		if (colInfo != null)
 		{
 			colInfo.GetComponent<PlayerHealth>().TakeDamage(enragedAttackDamage);
+		}
+	}
+
+	// Called from Event in Gnarlwood_RootAttack animation
+	public void RootAttack() 
+	{
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		Vector3 spawnPosition = new Vector3(player.transform.position.x, 0, 0);
+		attackRoots = Instantiate(rootAttackPrefab, spawnPosition, Quaternion.identity);
+		attackRootsAnimator = attackRoots.GetComponentInChildren<Animator>();
+	}
+
+	// Called from Event in Gnarlwood_RootAttack animation
+	public void ReverseAnimation() 
+	{
+		if (attackRoots != null) {
+			attackRootsAnimator.SetFloat("Speed", -2);
+		}
+	}
+
+	// Called from Event in Gnarlwood_RootAttack animation
+	public void DestroyRootAttack()
+	{
+		if (attackRoots != null) {
+			Destroy(attackRoots);
 		}
 	}
 

@@ -14,11 +14,13 @@ public class PrefabWeapon : MonoBehaviour {
 		if (Input.GetButtonDown("Fire1"))
 		{
 			animator.SetTrigger("Throw");
+			SoundManager.instance.PlayShootClip();
 			//Shoot();
 		}
 		if (Input.GetButtonDown("Fire2"))
 		{
 			animator.SetTrigger("IsAttacking");
+			SoundManager.instance.PlaySwingAxeClip();
 			//Shoot();
 		}
 	}

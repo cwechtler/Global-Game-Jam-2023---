@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 
 	public GameObject playerGO { get; private set; }
 	public bool isPaused { get; private set; }
+	public bool isInBossZone { get; set; } = false;
 	public float timeDeltaTime { get; private set; }
 	public int EnemiesKilled { get; set; }
 	public int ActiveSkillIndex { get; set; }
