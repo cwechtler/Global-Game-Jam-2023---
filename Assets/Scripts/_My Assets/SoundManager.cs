@@ -30,6 +30,7 @@ public class SoundManager : MonoBehaviour {
 	[SerializeField] private AudioClip rootAttackClip;
 
 	public int MusicArrayLength { get => music.Length; }
+	public bool InBossZone { get; set; }
 
 	private float audioVolume = 1f;
 	private int clipIndex = 0;
@@ -69,8 +70,17 @@ public class SoundManager : MonoBehaviour {
 			PlayRandomAmbient();
 		}
 
-		if(music.Length > 0)
-			MusicSelect();
+		if (music.Length > 0)
+		{
+			if (GameController.instance.isInBossZone)
+			{
+				MusicAudioSource.clip = music[2];
+			}
+			else
+			{
+				MusicSelect();
+			}
+		}
 		VolumeFadeIn(MusicAudioSource);
 		VolumeFadeIn(ambientAudioSource);
 	}
@@ -85,6 +95,7 @@ public class SoundManager : MonoBehaviour {
 
 		if (audioSource.clip != null){
 			if (!audioSource.isPlaying){
+				print("Playing");
 				audioSource.Play();
 				audioSource.volume = 0f;
 				audioVolume = 0f;
@@ -107,22 +118,30 @@ public class SoundManager : MonoBehaviour {
 
 	public void MusicSelect()
 	{
-		switch (LevelManager.instance.currentScene) {
-			case "Main Menu":
-				MusicAudioSource.clip = music[0];
-				break;
-			case "Options":
-				MusicAudioSource.clip = music[0];
-				break;
-			case "Level 1":
-				MusicAudioSource.clip = music[1];
-				break;
-			case "Level 2":
-				MusicAudioSource.clip = music[0];
-				break;
-			default:
-				break;
-		}
+		//if (GameController.instance.isInBossZone)
+		//{
+		//	MusicAudioSource.clip = music[2];
+		//}
+		//else
+		//{
+			switch (LevelManager.instance.currentScene)
+			{
+				case "Main Menu":
+					MusicAudioSource.clip = music[0];
+					break;
+				case "Options":
+					MusicAudioSource.clip = music[0];
+					break;
+				case "Level 1":
+					MusicAudioSource.clip = music[1];
+					break;
+				case "Credits":
+					MusicAudioSource.clip = music[0];
+					break;
+				default:
+					break;
+			}
+		//}
 	}
 
 	void PlayRandomAmbient()

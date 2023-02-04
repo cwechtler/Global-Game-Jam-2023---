@@ -11,7 +11,7 @@ public class Boss_Run : StateMachineBehaviour
 	public float timeRemaining = 0;
 
 	Transform player;
-	Rigidbody2D rb;
+	public Rigidbody2D rb;
 	Boss boss;
 	BossWeapon bossWeapon;
 
@@ -50,10 +50,20 @@ public class Boss_Run : StateMachineBehaviour
 
 		if (playerDistance >= bossWeapon.minRootAttackRange && playerDistance <= bossWeapon.maxRootAttackRange && timeRemaining <= 0)
 		{
-			timeRemaining = Random.Range(0, 10);
+			GameObject playerGo = GameObject.FindGameObjectWithTag("Player");
+			CharacterController2D characterController2D = playerGo.GetComponent<CharacterController2D>();
+			if (characterController2D.m_Grounded)
+			{
+				timeRemaining = Random.Range(0, 5);
+				animator.SetBool("IsWalking", false);
+				animator.SetBool("IsAttacking", true);
+				animator.SetTrigger("RootAttack");
+			}
+		}
+
+		if (GameController.instance.isInBossZone)
+		{
 			animator.SetBool("IsWalking", false);
-			animator.SetBool("IsAttacking", true);
-			animator.SetTrigger("RootAttack");
 		}
 	}
 

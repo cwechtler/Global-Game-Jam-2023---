@@ -8,10 +8,22 @@ public class Bullet : MonoBehaviour {
 	public int damage = 40;
 	public Rigidbody2D rb;
 	public GameObject impactEffect;
+	public int throwingAxeRange = 30;
+
+	private GameObject playerGo;
 
 	// Use this for initialization
 	void Start () {
 		rb.velocity = transform.right * speed;
+		playerGo = GameObject.FindGameObjectWithTag("Player");
+	}
+
+	private void Update()
+	{
+		float playerDistance = Vector2.Distance(playerGo.transform.position, rb.position);
+		if (playerDistance >= throwingAxeRange) {
+			Destroy(gameObject);
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D hitInfo)
