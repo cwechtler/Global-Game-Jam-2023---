@@ -7193,4 +7193,7 @@ ScriptedImporter:
   textureAssetName: Gnarlwood Texture
   prefabAssetName: Gnarlwood Prefab
   spriteLibAssetName: Gnarlwood Sprite Lib
-  secondarySpriteTextures: []
+  secondarySpriteTextures:
+  - name: _Emission
+    texture: {fileID: -5115129862664472023, guid: 990c2e9d9732ee64f951ca5804f1e384,
+      type: 3}
