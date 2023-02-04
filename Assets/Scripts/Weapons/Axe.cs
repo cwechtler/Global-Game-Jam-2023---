@@ -28,7 +28,7 @@ public class Axe : MonoBehaviour
 		if (colInfo != null)
 		{
 			colInfo.GetComponent<EnemyHealth>().TakeDamage(meleDamage);
-			GameController.instance.Score += 1;
+			//GameController.instance.Score += 1;
 			//Instantiate(impactEffect, transform.position, transform.rotation);
 		}
 	}
