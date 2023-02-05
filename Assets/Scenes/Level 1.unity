@@ -488,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1870697049, guid: 3b8a8701199939645a27e8c3642c0fbb, type: 3}
       propertyPath: health
-      value: 1000
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 1870697050, guid: 3b8a8701199939645a27e8c3642c0fbb, type: 3}
       propertyPath: player
@@ -635,14 +635,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxColider: {fileID: 517968348}
-  enterBossZoneEvent:
-    m_PersistentCalls:
-      m_Calls: []
   gnarlwoodHealthBar: {fileID: 1611324158}
   growth: {fileID: 1314827992}
   cameraShake: {fileID: 517616738}
   shakeDuration: 2
-  shakeMagnitude: 0.1
+  shakeMagnitude: 0.4
 --- !u!1 &114422437
 GameObject:
   m_ObjectHideFlags: 0

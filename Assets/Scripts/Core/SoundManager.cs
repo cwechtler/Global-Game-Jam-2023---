@@ -140,6 +140,9 @@ public class SoundManager : MonoBehaviour {
 				case "Options":
 					MusicAudioSource.clip = music[0];
 					break;
+				case "Controls":
+					MusicAudioSource.clip = music[0];
+					break;
 				case "Level 1":
 					MusicAudioSource.clip = music[1];
 					break;
