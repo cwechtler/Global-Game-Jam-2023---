@@ -9,6 +9,7 @@ TagManager:
   - Fade Panel
   - Enemy
   - Boss Zone
+  - Patrol Point
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Boss
   - Enemy
   - Boss Zone
-  - 
+  - Patrol Point
   - 
   - 
   - 

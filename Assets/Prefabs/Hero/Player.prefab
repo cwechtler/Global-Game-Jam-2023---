@@ -218,7 +218,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.334687}
+  m_Offset: {x: -0.00273408, y: -0.334687}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -229,7 +229,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8739734, y: 1.2729764}
+  m_Size: {x: 0.86850524, y: 1.2729764}
   m_EdgeRadius: 0
 --- !u!58 &3094603840214680296
 CircleCollider2D:
@@ -294,6 +294,8 @@ MonoBehaviour:
   health: 100
   deathEffect: {fileID: 1755349173569476, guid: 3c45864be6a059a4a82a25e285298338,
     type: 3}
+  isDead: 0
+  cameraShake: {fileID: 0}
 --- !u!1 &4932517074139732968
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +362,7 @@ PrefabInstance:
     - target: {fileID: 2370610697558136350, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2370610697558136350, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
@@ -370,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 2370610697579120525, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2370610697579120525, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
@@ -385,7 +387,7 @@ PrefabInstance:
     - target: {fileID: 2370610697610109434, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2370610697610109434, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
@@ -395,7 +397,7 @@ PrefabInstance:
     - target: {fileID: 2370610697874880262, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2370610697874880262, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
@@ -480,7 +482,7 @@ PrefabInstance:
     - target: {fileID: 2370610698373106707, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2370610698373106707, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
@@ -490,7 +492,7 @@ PrefabInstance:
     - target: {fileID: 2370610698591442727, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2370610698591442727, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
@@ -505,7 +507,7 @@ PrefabInstance:
     - target: {fileID: 2370610698597509510, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2370610698597509510, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
@@ -520,7 +522,7 @@ PrefabInstance:
     - target: {fileID: 2370610699278452686, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2370610699278452686, guid: ffed83380cb5aa44591573783b4575c7,
         type: 3}

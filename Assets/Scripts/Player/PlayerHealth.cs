@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,22 +7,41 @@ public class PlayerHealth : MonoBehaviour
 	public int health = 100;
 
 	public GameObject deathEffect;
+	public bool isDead = false;
+	public CameraShake cameraShake;
 
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
 		canvasController.UpdateHealthBar();
-		StartCoroutine(DamageAnimation());
+		if (!isDead) {
+			SoundManager.instance.PlayHurtClip();
+			StartCoroutine(DamageAnimation());
+			StartCoroutine(cameraShake.Shake(.15f, .1f));
+		}
 
-		if (health <= 0)
+		if (health <= 0 && !isDead)
 		{
-			Die();
+			StartCoroutine(Die());
 		}
 	}
 
-	void Die()
+	IEnumerator Die()
 	{
-		LevelManager.instance.LoadLevel("Credits", 1f);
+		isDead = true;	
+		SoundManager.instance.PlayPlayerDeathClip();
+		yield return new WaitForSeconds(.2f);
+
+		SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
+
+		foreach (SpriteRenderer sr in srs)
+		{
+			Color c = sr.color;
+			c.a = 0;
+			sr.color = c;
+		}
+
+		StartCoroutine(LevelManager.instance.LoadLevel("Credits", 2f));
 	}
 
 	IEnumerator DamageAnimation()
@@ -33,6 +50,8 @@ public class PlayerHealth : MonoBehaviour
 
 		for (int i = 0; i < 3; i++)
 		{
+			if (isDead)
+				break;
 			foreach (SpriteRenderer sr in srs)
 			{
 				Color c = sr.color;

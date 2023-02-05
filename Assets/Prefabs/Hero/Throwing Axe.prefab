@@ -91,6 +91,7 @@ MonoBehaviour:
   damage: 40
   rb: {fileID: -5227510768680295517}
   impactEffect: {fileID: 0}
+  throwingAxeRange: 20
 --- !u!82 &-4408128819657314677
 AudioSource:
   m_ObjectHideFlags: 0
