@@ -1104,18 +1104,6 @@ MonoBehaviour:
           m_StringArgument: Main Menu
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5696494217059598339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5696494217059598365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97716dd5f9534c4a842bc3bae2c74f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &5696494217059598343
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1156,7 +1144,6 @@ GameObject:
   - component: {fileID: 5696494217059598343}
   - component: {fileID: 5696494217059598336}
   - component: {fileID: 5696494217059598337}
-  - component: {fileID: 5696494217059598339}
   m_Layer: 5
   m_Name: Defaults Button
   m_TagString: Untagged
@@ -1196,7 +1183,6 @@ GameObject:
   - component: {fileID: 5696494217062432119}
   - component: {fileID: 5696494217062432112}
   - component: {fileID: 5696494217062432113}
-  - component: {fileID: 5696494217062432115}
   m_Layer: 5
   m_Name: Save Button
   m_TagString: Untagged
@@ -1290,18 +1276,6 @@ MonoBehaviour:
           m_StringArgument: Main Menu
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5696494217062432115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5696494217062432077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97716dd5f9534c4a842bc3bae2c74f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &5696494217062432119
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1364,7 +1338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &5696494217252433740
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2806,18 +2780,6 @@ MonoBehaviour:
           m_StringArgument: Main Menu
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5696494218010307267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5696494218010307293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97716dd5f9534c4a842bc3bae2c74f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &5696494218010307271
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2858,14 +2820,13 @@ GameObject:
   - component: {fileID: 5696494218010307271}
   - component: {fileID: 5696494218010307264}
   - component: {fileID: 5696494218010307265}
-  - component: {fileID: 5696494218010307267}
   m_Layer: 5
   m_Name: Main Menu Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &5696494218055232130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3616,7 +3577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6783952625008046230
 RectTransform:
   m_ObjectHideFlags: 0

@@ -37,7 +37,9 @@ public class EnemyHealth : MonoBehaviour
 		Vector3 spawnPosition = new Vector3(transform.position.x, (transform.position.y + 1f), transform.position.z);
 		Instantiate(deathEffect, spawnPosition, Quaternion.identity);
 		Destroy(gameObject);
-
-		StartCoroutine(LevelManager.instance.LoadLevel("Credits", 2f));
+		if (isBoss)
+		{
+			StartCoroutine(LevelManager.instance.LoadLevel("Credits", 2f));
+		}
 	}
 }

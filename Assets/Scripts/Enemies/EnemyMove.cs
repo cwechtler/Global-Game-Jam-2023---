@@ -16,11 +16,8 @@ public class EnemyMove : MonoBehaviour
     private Rigidbody2D rb;
 	private bool isFlipped = false;
 	private Transform patrolTarget;
-
-	Vector2 target;
-	Vector2 newPos;
-	float dist;
-	bool flipped = false;	
+	private float dist;
+	private bool patrolPointFlipped = false;	
 
 	// Start is called before the first frame update
 	void Start()
@@ -32,29 +29,35 @@ public class EnemyMove : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-		LookAtPlayer();
+	{
+		SwitchPatrolPoints();
+		LookAtPatrolTarget();
+
+		Vector2 target = new Vector2(patrolTarget.position.x, rb.position.y);
+		Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
+		rb.MovePosition(newPos);
+	}
+
+	private void SwitchPatrolPoints()
+	{
 		dist = Mathf.Abs(transform.position.x - patrolTarget.transform.position.x);
 
 		if (dist < .01f)
 		{
-			if (!flipped) {
+			if (!patrolPointFlipped)
+			{
 				patrolTarget = patrolPointA;
-				flipped = true;
+				patrolPointFlipped = true;
 			}
-			else
+			else if (patrolPointFlipped)
 			{
 				patrolTarget = patrolPointB;
-				flipped = false;
+				patrolPointFlipped = false;
 			}
 		}
-
-		target = new Vector2(patrolTarget.position.x, rb.position.y);
-		newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-		rb.MovePosition(newPos);
 	}
 
-	public void LookAtPlayer()
+	public void LookAtPatrolTarget()
 	{
 		Vector3 flipped = transform.localScale;
 		flipped.z *= -1f;
@@ -75,19 +78,8 @@ public class EnemyMove : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-
 		if (collision.CompareTag("Player")) {
-			print(collision.gameObject);
 			collision.GetComponent<PlayerHealth>().TakeDamage(damage);
-		}
-	}
-
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag("Player"))
-		{
-			print(collision.gameObject);
-			//collision.GetComponent<PlayerHealth>().TakeDamage(damage);
 		}
 	}
 }

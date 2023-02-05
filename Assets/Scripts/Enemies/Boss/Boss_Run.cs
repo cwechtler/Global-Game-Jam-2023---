@@ -50,7 +50,7 @@ public class Boss_Run : StateMachineBehaviour
 
 		if (playerDistance <= attackRange)
 		{
-			animator.SetBool("IsWalking", false);
+			//animator.SetBool("IsWalking", false);
 			animator.SetBool("IsAttacking", true);
 			animator.SetTrigger("Swing");
 		}
@@ -62,16 +62,16 @@ public class Boss_Run : StateMachineBehaviour
 			if (characterController2D.m_Grounded)
 			{
 				timeRemaining = Random.Range(0, 5);
-				animator.SetBool("IsWalking", false);
+				//animator.SetBool("IsWalking", false);
 				animator.SetBool("IsAttacking", true);
 				animator.SetTrigger("RootAttack");
 			}
 		}
 
-		if (GameController.instance.isInBossZone)
-		{
-			animator.SetBool("IsWalking", false);
-		}
+		//if (GameController.instance.isInBossZone)
+		//{
+		//	animator.SetBool("IsWalking", false);
+		//}
 	}
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state

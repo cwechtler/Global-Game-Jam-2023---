@@ -186,7 +186,7 @@ public class SoundManager : MonoBehaviour {
 
 	public void SetButtonClip(){
 		if(buttonClick != null)
-			SFXAudioSource.PlayOneShot(buttonClick, 2f);
+			SFXAudioSource.PlayOneShot(buttonClick, .5f);
 	}
 
 	public void PlayJumpClip()
@@ -198,12 +198,12 @@ public class SoundManager : MonoBehaviour {
 	public void PlaySwingAxeClip()
 	{
 		if (swingAxeClip != null)
-			SFXAudioSource.PlayOneShot(swingAxeClip, 2f);
+			SFXAudioSource.PlayOneShot(swingAxeClip, 1f);
 	}
 	public void PlaySwingAxeImpactClip()
 	{
 		if (swingAxeImpactClip != null)
-			SFXAudioSource.PlayOneShot(swingAxeImpactClip, 2f);
+			SFXAudioSource.PlayOneShot(swingAxeImpactClip, 1f);
 	}
 
 	public void PlayPlayerDeathClip() {
@@ -263,6 +263,7 @@ public class SoundManager : MonoBehaviour {
 
 	public void ChangeMusicVolume(float volume){
 		audioMixer.SetFloat("Music", volume);
+		audioMixer.SetFloat("Ambient", volume - 6);
 		if (volume == -40f){
 			audioMixer.SetFloat("Music", -80f);
 		}

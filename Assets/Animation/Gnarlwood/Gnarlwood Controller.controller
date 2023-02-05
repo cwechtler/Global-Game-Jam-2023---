@@ -228,9 +228,9 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -230, y: 90, z: 0}
-  m_EntryPosition: {x: -270, y: 160, z: 0}
-  m_ExitPosition: {x: -410, y: 60, z: 0}
+  m_AnyStatePosition: {x: -290, y: 40, z: 0}
+  m_EntryPosition: {x: -100, y: -10, z: 0}
+  m_ExitPosition: {x: -290, y: -10, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 5842878170867772568}
 --- !u!1101 &-5368680181095346727
@@ -241,7 +241,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: IsWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -541,6 +541,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: RootAttack
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsAttacking
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3858084070876564261}
   m_Solo: 0
@@ -780,6 +783,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Swing
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsAttacking
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1656643699589698608}
   m_Solo: 0
@@ -802,7 +808,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: IsWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -927,7 +933,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: IsWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -1052,7 +1058,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: IsWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
