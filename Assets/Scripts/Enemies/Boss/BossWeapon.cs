@@ -50,7 +50,7 @@ public class BossWeapon : MonoBehaviour
 	public void RootAttack() 
 	{
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		Vector3 spawnPosition = new Vector3(player.transform.position.x, (player.transform.position.y + 2.2f), 0);
+		Vector3 spawnPosition = new Vector3(player.transform.position.x, -3.4f, 0);
 		attackRoots = Instantiate(rootAttackPrefab, spawnPosition, Quaternion.identity);
 		attackRootsAnimator = attackRoots.GetComponentInChildren<Animator>();
 	}

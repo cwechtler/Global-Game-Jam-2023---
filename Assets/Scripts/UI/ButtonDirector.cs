@@ -11,6 +11,7 @@ public class ButtonDirector : MonoBehaviour
 
 	public void StartGame()
 	{
+		GameController.instance.resetGame();	
 		LevelManager.instance.LoadLevel(LevelManager.Level1String, true);
 	}
 

@@ -13,24 +13,28 @@ public class Axe : MonoBehaviour
 	[SerializeField] private int meleDamage = 60;
 	[SerializeField] private LayerMask enemyLayers;
 
-	GameObject enemy;
-
-	//Called in Throw animation by an event
+	//Called in Hero_Throw animation by an event
 	void Shoot()
 	{
 		Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 	}
 
-	//Called in Attack animation by an event
+	//Called in Hero_Attack animation by an event
 	void Hit()
 	{
 		Collider2D colInfo = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayers);
 		if (colInfo != null)
 		{
 			colInfo.GetComponent<EnemyHealth>().TakeDamage(meleDamage);
+			SoundManager.instance.PlaySwingAxeImpactClip();
 			//GameController.instance.Score += 1;
 			//Instantiate(impactEffect, transform.position, transform.rotation);
 		}
+	}
+
+	//Called in Hero_Run animation by an event
+	void PlayWalkSound() {
+		SoundManager.instance.PlayWalkClip();
 	}
 
 	private void OnDrawGizmosSelected()

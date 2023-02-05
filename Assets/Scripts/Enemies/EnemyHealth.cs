@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
 
 		Health -= damage;
 	
-		if (Health <= 300 && isBoss)
+		if (Health <= 400 && isBoss)
 		{
 			GetComponent<Animator>().SetBool("IsEnraged", true);
 		}
@@ -34,8 +34,10 @@ public class EnemyHealth : MonoBehaviour
 
 	void Die()
 	{
-		Instantiate(deathEffect, transform.position, Quaternion.identity);
+		Vector3 spawnPosition = new Vector3(transform.position.x, (transform.position.y + 1f), transform.position.z);
+		Instantiate(deathEffect, spawnPosition, Quaternion.identity);
 		Destroy(gameObject);
-	}
 
+		StartCoroutine(LevelManager.instance.LoadLevel("Credits", 2f));
+	}
 }

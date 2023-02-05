@@ -9,20 +9,26 @@ public class SoundManager : MonoBehaviour {
 	[SerializeField] private AudioSource MusicAudioSource;
 	[SerializeField] private AudioSource SFXAudioSource;
 	[SerializeField] private AudioSource ambientAudioSource;
+	[SerializeField] private AudioSource SpookyAudioSource;
 	[Space]
 	[SerializeField] private AudioClip[] music;
-	[SerializeField] private AudioClip[] ambientClips;
-	[SerializeField] private AudioClip[] movementClips;
+	[SerializeField] private AudioClip ambientClip;
+	[SerializeField] private AudioClip[] SpookyClips;
+
+
 	[Space]
 	[SerializeField] private AudioClip buttonClick;
 
 	[Space]
 	[Header("Player Sounds")]
+	[SerializeField] private AudioClip movementClips;
 	[SerializeField] private AudioClip shootClip;
 	[SerializeField] private AudioClip jumpClip;
 	[SerializeField] private AudioClip swingAxeClip;
+	[SerializeField] private AudioClip swingAxeImpactClip;
 	[SerializeField] private AudioClip axeImpactClip;
 	[SerializeField] private AudioClip playerDeathClip;
+	[SerializeField] private AudioClip[] HurtClips;
 
 	[Space]
 	[Header("Boss Sounds")]
@@ -67,13 +73,14 @@ public class SoundManager : MonoBehaviour {
 		if (ambientAudioSource.isPlaying) {
 
 		}
-		if (LevelManager.instance.currentScene != "Main Menu") {
+		if (LevelManager.instance.currentScene == "Level 1") {
+			PlayAmbient();
 			PlayRandomAmbient();
 		}
 
 		if (music.Length > 0)
 		{
-			if (GameController.instance.isInBossZone)
+			if (GameController.instance.isInBossZone && LevelManager.instance.currentScene == "Level 1")
 			{
 				MusicAudioSource.clip = music[2];
 			}
@@ -84,6 +91,7 @@ public class SoundManager : MonoBehaviour {
 		}
 		VolumeFadeIn(MusicAudioSource);
 		VolumeFadeIn(ambientAudioSource);
+		VolumeFadeIn(SpookyAudioSource);
 	}
 
 	void VolumeFadeIn(AudioSource audioSource) {
@@ -96,7 +104,6 @@ public class SoundManager : MonoBehaviour {
 
 		if (audioSource.clip != null){
 			if (!audioSource.isPlaying){
-				print("Playing");
 				audioSource.Play();
 				audioSource.volume = 0f;
 				audioVolume = 0f;
@@ -145,11 +152,18 @@ public class SoundManager : MonoBehaviour {
 		//}
 	}
 
+	void PlayAmbient()
+	{
+		if (!ambientAudioSource.isPlaying)
+		{
+			ambientAudioSource.PlayOneShot(ambientClip);
+		}
+	}
 	void PlayRandomAmbient()
 	{
-		if (!ambientAudioSource.isPlaying && ambientClips.Length > 0) {
-			clipIndex = Random.Range(0, ambientClips.Length);
-			ambientAudioSource.PlayOneShot(ambientClips[clipIndex]);
+		if (!SpookyAudioSource.isPlaying && SpookyClips.Length > 0) {
+			clipIndex = Random.Range(0, SpookyClips.Length);
+			SpookyAudioSource.PlayOneShot(SpookyClips[clipIndex]);
 		}
 	}
 
@@ -186,6 +200,11 @@ public class SoundManager : MonoBehaviour {
 		if (swingAxeClip != null)
 			SFXAudioSource.PlayOneShot(swingAxeClip, 2f);
 	}
+	public void PlaySwingAxeImpactClip()
+	{
+		if (swingAxeImpactClip != null)
+			SFXAudioSource.PlayOneShot(swingAxeImpactClip, 2f);
+	}
 
 	public void PlayPlayerDeathClip() {
 		if (playerDeathClip != null)
@@ -199,15 +218,20 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public void PlayWalkClip() {
-		if (movementClips[1] != null)
-			SFXAudioSource.PlayOneShot(movementClips[1], .2f);
+		if (movementClips != null)
+			SFXAudioSource.PlayOneShot(movementClips, .3f);
 	}
 
-	public void PlayRunClip()
-	{
-		if (movementClips[2] != null)
-			SFXAudioSource.PlayOneShot(movementClips[2], .2f);
+	public void PlayHurtClip() {
+		clipIndex = Random.Range(0, HurtClips.Length);
+		SFXAudioSource.PlayOneShot(HurtClips[clipIndex], .1f);
 	}
+
+	//public void PlayRunClip()
+	//{
+	//	if (movementClips[2] != null)
+	//		SFXAudioSource.PlayOneShot(movementClips[2], .2f);
+	//}
 
 	public void PlayShootClip() {
 		if (shootClip != null)

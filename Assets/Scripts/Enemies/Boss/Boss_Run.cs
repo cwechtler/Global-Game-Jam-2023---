@@ -11,7 +11,7 @@ public class Boss_Run : StateMachineBehaviour
 	public float timeRemaining = 0;
 
 	Transform player;
-	public Rigidbody2D rb;
+	Rigidbody2D rb;
 	Boss boss;
 	BossWeapon bossWeapon;
 
