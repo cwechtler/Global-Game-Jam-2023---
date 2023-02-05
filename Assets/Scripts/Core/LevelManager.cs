@@ -140,7 +140,6 @@ public class LevelManager : MonoBehaviour {
 
 	public IEnumerator LoadLevel(string name, float waitTime)
 	{
-		print("load " + name);
 		//GameController.instance.FadePanel();
 		yield return new WaitForSeconds(waitTime);
 		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));

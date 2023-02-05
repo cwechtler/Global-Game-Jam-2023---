@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BossZone : MonoBehaviour
 {
 	[SerializeField] private BoxCollider2D boxColider;
-	[SerializeField] private UnityEvent enterBossZoneEvent;
+	//[SerializeField] private UnityEvent enterBossZoneEvent;
 	[SerializeField] private GameObject gnarlwoodHealthBar;
 	[SerializeField] private GameObject growth;
 	[SerializeField] private CameraShake cameraShake;

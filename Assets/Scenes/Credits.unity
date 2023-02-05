@@ -1303,6 +1303,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4638319303567345372, guid: a1bf6176cd81d674790cb21fb3ac011f,
+        type: 3}
+      propertyPath: sessionStorageItem
+      value: Jam-Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638319303567345372, guid: a1bf6176cd81d674790cb21fb3ac011f,
+        type: 3}
+      propertyPath: setSessionStorageGameQuitURL
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8956648074186945114, guid: a1bf6176cd81d674790cb21fb3ac011f,
         type: 3}
       propertyPath: m_RootOrder

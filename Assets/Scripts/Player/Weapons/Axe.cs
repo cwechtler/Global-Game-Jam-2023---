@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class Axe : MonoBehaviour
 {
@@ -25,7 +21,10 @@ public class Axe : MonoBehaviour
 		Collider2D colInfo = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayers);
 		if (colInfo != null)
 		{
-			colInfo.GetComponent<EnemyHealth>().TakeDamage(meleDamage);
+			EnemyHealth enemyHealth = colInfo.GetComponent<EnemyHealth>();
+			if (enemyHealth != null) { 
+				enemyHealth.TakeDamage(meleDamage);
+			}
 			SoundManager.instance.PlaySwingAxeImpactClip();
 			//GameController.instance.Score += 1;
 			//Instantiate(impactEffect, transform.position, transform.rotation);
