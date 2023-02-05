@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
 
 	[SerializeField] private int health = 500;
 	[SerializeField] private GameObject deathEffect;
+	[SerializeField] private bool isBoss;
 
 	private bool isInvulnerable = false;
 
@@ -19,8 +20,8 @@ public class EnemyHealth : MonoBehaviour
 			return;
 
 		Health -= damage;
-
-		if (Health <= 200)
+	
+		if (Health <= 300 && isBoss)
 		{
 			GetComponent<Animator>().SetBool("IsEnraged", true);
 		}
