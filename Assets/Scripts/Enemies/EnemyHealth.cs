@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
 
 	public bool IsInvulnerable { get => isInvulnerable; set => isInvulnerable = value; }
 	public int Health { get => health; set => health = value; }
+	public bool IsBoss { get => isBoss; set => isBoss = value; }
 
 	public void TakeDamage(int damage)
 	{
@@ -21,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
 
 		Health -= damage;
 	
-		if (Health <= 400 && isBoss)
+		if (Health <= 400 && IsBoss)
 		{
 			GetComponent<Animator>().SetBool("IsEnraged", true);
 		}
@@ -36,10 +37,21 @@ public class EnemyHealth : MonoBehaviour
 	{
 		Vector3 spawnPosition = new Vector3(transform.position.x, (transform.position.y + 1f), transform.position.z);
 		Instantiate(deathEffect, spawnPosition, Quaternion.identity);
-		Destroy(gameObject);
-		if (isBoss)
+
+		if (IsBoss)
 		{
+			Destroy(GetComponent<Animator>());
+			Destroy(GetComponent<Collider2D>());
+			GetComponent<BossWeapon>().DestroyRootAttack();	
+
+			foreach (Transform child in transform)
+			{
+				Destroy(child.gameObject);
+			}
 			StartCoroutine(LevelManager.instance.LoadLevel("Credits", 2f));
+		}
+		else {
+			Destroy(gameObject);
 		}
 	}
 }

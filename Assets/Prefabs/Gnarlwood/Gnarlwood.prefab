@@ -107,10 +107,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 20
   enragedAttackDamage: 40
-  attackOffset: {x: -1.28, y: 2.23, z: 0}
-  attackRange: 2
+  attackOffset: {x: -1.94, y: 1.87, z: 0}
+  attackRange: 2.5
   attackDistance: 5
-  minRootAttackRange: 10
+  minRootAttackRange: 8
   maxRootAttackRange: 20
   rootAttackPrefab: {fileID: 1047014800891880397, guid: a56b117a510d36947a928e34c638d889,
     type: 3}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae776ef7fb190534dbfbb90484a1a9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 800
+  health: 900
   deathEffect: {fileID: 1755349173569476, guid: 3c45864be6a059a4a82a25e285298338,
     type: 3}
   isBoss: 1

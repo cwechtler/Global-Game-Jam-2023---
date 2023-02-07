@@ -4,23 +4,26 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
 	[SerializeField] private CanvasController canvasController;
-	public int health = 100;
+	[SerializeField] private GameObject deathEffect;
+	[SerializeField] private GameObject hero;
 
-	public GameObject deathEffect;
-	public bool isDead = false;
-	public CameraShake cameraShake;
+	public int Health { get => health; set => health = value; }
+	public bool IsDead { get => isDead; set => isDead = value; }
+
+	private int health = 100;
+	private bool isDead = false;
 
 	public void TakeDamage(int damage)
 	{
-		health -= damage;
+		Health -= damage;
 		canvasController.UpdateHealthBar();
-		if (!isDead) {
+		if (!IsDead) {
 			SoundManager.instance.PlayHurtClip();
 			StartCoroutine(DamageAnimation());
-			StartCoroutine(cameraShake.Shake(.15f, .1f));
+			StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(.15f, .1f));
 		}
 
-		if (health <= 0 && !isDead)
+		if (Health <= 0 && !IsDead)
 		{
 			StartCoroutine(Die());
 		}
@@ -28,18 +31,10 @@ public class PlayerHealth : MonoBehaviour
 
 	IEnumerator Die()
 	{
-		isDead = true;	
+		IsDead = true;	
 		SoundManager.instance.PlayPlayerDeathClip();
 		yield return new WaitForSeconds(.2f);
-
-		SpriteRenderer[] srs = GetComponentsInChildren<SpriteRenderer>();
-
-		foreach (SpriteRenderer sr in srs)
-		{
-			Color c = sr.color;
-			c.a = 0;
-			sr.color = c;
-		}
+		Destroy(hero);
 
 		StartCoroutine(LevelManager.instance.LoadLevel("Credits", 2f));
 	}
@@ -50,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
 
 		for (int i = 0; i < 3; i++)
 		{
-			if (isDead)
+			if (IsDead)
 				break;
 			foreach (SpriteRenderer sr in srs)
 			{

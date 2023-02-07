@@ -4,24 +4,32 @@ public class PrefabWeapon : MonoBehaviour {
 
 	public Transform firePoint;
 	public GameObject bulletPrefab;
-	public Animator animator;
+
+	private Animator animator;
+
+	void Start ()
+	{
+		animator = GetComponentInChildren<Animator>();
+	}
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Fire1"))
+		if (animator != null)
 		{
-			animator.SetTrigger("Throw");
-			SoundManager.instance.PlayShootClip();
-			//Shoot();
-		}
-		if (Input.GetButtonDown("Fire2"))
-		{
-			animator.SetTrigger("IsAttacking");
-			SoundManager.instance.PlaySwingAxeClip();
-			//Shoot();
+			if (Input.GetButtonDown("Fire1"))
+			{
+				animator.SetTrigger("Throw");
+				SoundManager.instance.PlayShootClip();
+			}
+			if (Input.GetButtonDown("Fire2"))
+			{
+				animator.SetTrigger("IsAttacking");
+				SoundManager.instance.PlaySwingAxeClip();
+			}
 		}
 	}
 
+	// Called from Event in Hero_Attack animation
 	void Shoot ()
 	{
 		//animator.ResetTrigger("Throw");

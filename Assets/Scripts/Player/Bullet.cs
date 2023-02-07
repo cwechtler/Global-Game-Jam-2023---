@@ -33,7 +33,6 @@ public class Bullet : MonoBehaviour {
 		{
 			enemy.TakeDamage(damage);
 			SoundManager.instance.PlayAxeImpactClip();
-			GameController.instance.Score += 1;
 		}
 
 		//Instantiate(impactEffect, transform.position, transform.rotation);

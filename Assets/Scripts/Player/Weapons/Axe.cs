@@ -26,7 +26,6 @@ public class Axe : MonoBehaviour
 				enemyHealth.TakeDamage(meleDamage);
 			}
 			SoundManager.instance.PlaySwingAxeImpactClip();
-			//GameController.instance.Score += 1;
 			//Instantiate(impactEffect, transform.position, transform.rotation);
 		}
 	}

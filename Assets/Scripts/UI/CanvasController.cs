@@ -26,8 +26,8 @@ public class CanvasController : MonoBehaviour
 
 	private void Start()
 	{
-		playerHealthBar.maxValue = playerHealth.health;
-		playerHealthBar.value = playerHealth.health;
+		playerHealthBar.maxValue = playerHealth.Health;
+		playerHealthBar.value = playerHealth.Health;
 		ScoreText.color = defaultTextColor;
 		UpdateTextColor();
 		//animator = fadePanel.GetComponent<Animator>();
@@ -74,7 +74,7 @@ public class CanvasController : MonoBehaviour
 	}
 
 	public void UpdateHealthBar() {
-		playerHealthBar.value = playerHealth.health;
+		playerHealthBar.value = playerHealth.Health;
 	}
 
 	public void MainMenu()

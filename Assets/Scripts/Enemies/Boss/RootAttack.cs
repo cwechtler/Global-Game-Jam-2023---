@@ -7,6 +7,7 @@ public class RootAttack : MonoBehaviour
 	private bool isTriggered = false;
 	private float damageTimer = .5f;
 
+
 	private void Update()
 	{
 		if (damageTimer > 0)

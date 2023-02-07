@@ -15,10 +15,6 @@ public class OptionsController : MonoBehaviour {
 	[Space]
 	[SerializeField] private Slider startSliderInSelected;
 
-	private CanvasGroup canvasGroup;
-	private Animator canvasGroupAnimator;
-	private Animator fadeAnimator;
-
 	void Start ()
 	{
 		startSliderInSelected.Select();

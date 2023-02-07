@@ -10,12 +10,12 @@ public class PlayerHealthBar : MonoBehaviour
 
 	void Start()
 	{
-		slider.maxValue = health.health;
+		slider.maxValue = health.Health;
 	}
 
 	// Update is called once per frame
 	void Update()
     {
-		slider.value = health.health;
+		slider.value = health.Health;
     }
 }

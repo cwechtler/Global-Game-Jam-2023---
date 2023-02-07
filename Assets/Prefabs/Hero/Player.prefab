@@ -259,8 +259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5273cd41ac3c5246965ef9469d10dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 3094603840214680279}
-  animator: {fileID: 726245114547372176}
   runSpeed: 50
 --- !u!114 &3094603840214680301
 MonoBehaviour:
@@ -277,7 +275,6 @@ MonoBehaviour:
   firePoint: {fileID: 3094603840131061479}
   bulletPrefab: {fileID: 7085590860335177587, guid: 946e01184c067c74a893f26a49e476e1,
     type: 3}
-  animator: {fileID: 726245114547372176}
 --- !u!114 &3094603840214680274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,11 +288,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasController: {fileID: 0}
-  health: 100
   deathEffect: {fileID: 1755349173569476, guid: 3c45864be6a059a4a82a25e285298338,
     type: 3}
-  isDead: 0
-  cameraShake: {fileID: 0}
+  hero: {fileID: 726245114547372179}
 --- !u!1 &4932517074139732968
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,12 +535,6 @@ GameObject:
 --- !u!4 &726245114547372177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2370610697899748577, guid: ffed83380cb5aa44591573783b4575c7,
-    type: 3}
-  m_PrefabInstance: {fileID: 3094603839760477296}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &726245114547372176 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2370610697899748576, guid: ffed83380cb5aa44591573783b4575c7,
     type: 3}
   m_PrefabInstance: {fileID: 3094603839760477296}
   m_PrefabAsset: {fileID: 0}

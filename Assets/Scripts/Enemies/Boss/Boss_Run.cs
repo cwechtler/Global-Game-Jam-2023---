@@ -29,7 +29,7 @@ public class Boss_Run : StateMachineBehaviour
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 
-		if (player.GetComponent<PlayerHealth>().isDead) {
+		if (player.GetComponent<PlayerHealth>().IsDead) {
 			animator.SetBool("IsWalking", false);
 			animator.SetBool("IsAttacking", false);
 			return;
@@ -50,7 +50,6 @@ public class Boss_Run : StateMachineBehaviour
 
 		if (playerDistance <= attackRange)
 		{
-			//animator.SetBool("IsWalking", false);
 			animator.SetBool("IsAttacking", true);
 			animator.SetTrigger("Swing");
 		}
@@ -62,16 +61,10 @@ public class Boss_Run : StateMachineBehaviour
 			if (characterController2D.m_Grounded)
 			{
 				timeRemaining = Random.Range(0, 5);
-				//animator.SetBool("IsWalking", false);
 				animator.SetBool("IsAttacking", true);
 				animator.SetTrigger("RootAttack");
 			}
 		}
-
-		//if (GameController.instance.isInBossZone)
-		//{
-		//	animator.SetBool("IsWalking", false);
-		//}
 	}
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
