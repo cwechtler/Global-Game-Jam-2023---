@@ -68,4 +68,9 @@ public class OptionsController : MonoBehaviour {
 		musicVolumeSlider.value = 0f;
 		sfxVolumeSlider.value = 0f;
 	}
+
+	public void ControlsMenu()
+	{
+		LevelManager.instance.LoadLevel("Controls");
+	}
 }
